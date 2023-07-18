@@ -2,8 +2,6 @@
 
 ;;; Chapter 1
 
-;;; Section 1.1
-
 ;;; Exercise 1.1
 
 10 ; 10
@@ -26,3 +24,21 @@
          ((< a b) b)
          (else -1))
    (+ a 1)) ; 16
+
+;;; Exercise 1.2
+
+(/ (+ 5 4 (- 2 (- 3 (+ 6 (/ 4 5)))))
+   (* 3 (- 6 2) (- 2 7)))
+
+;;; Exercise 1.3
+
+(define (sq x) (* x x))
+(define (sum-sq x y) (+ (sq x) (sq y)))
+(define (sum-sq-lrg x y z)
+  (cond ((and (>= x z) (>= y z)) (sum-sq x y))
+        ((and (>= x y) (>= z y)) (sum-sq x z))
+        (else (sum-sq y z))))
+
+;;; Exercise 1.4
+
+; Returns a + |b|.
