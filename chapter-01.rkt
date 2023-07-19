@@ -89,3 +89,60 @@
 
 (define (cbrt x)
       (cbrt-iter-improved x 1.0 x))
+
+;;; Exercise 1.9
+
+; The first definition is recursive:
+; (+ 4 5) =>
+; (inc (+ 3 5)) =>
+; (inc (inc (+ 2 5))) =>
+; (inc (inc (inc (+ 1 5)))) =>
+; (inc (inc (inc (inc (+ 0 5))))) =>
+; (inc (inc (inc (inc 5)))) =>
+; (inc (inc (inc 6))) =>
+; (inc (inc 7)) =>
+; (inc 8) =>
+; 9
+
+; The second definition is iterative:
+; (+ 4 5) =>
+; (+ 3 6) =>
+; (+ 2 7) =>
+; (+ 1 8) =>
+; (+ 0 9) =>
+; 9
+
+;;; Exercise 1.10
+
+; (f n) => 2 * n
+; (g n) => 0 if n = 0, otherwise (f (f (f ... 1))) n times, i.e., 2^n
+; (h n) => 0 if n = 0, otherwise (g (g (g ... 1))) n times
+; (k n) => 5 * n^2
+
+;;; Exercise 1.11
+
+(define (f-iter-helper f-n-1 f-n-2 f-n-3 counter n)
+  (if (> counter n)
+      f-n-1
+      (f-iter-helper (+ f-n-1 (* 2 f-n-2) (* 3 f-n-3)) f-n-1 f-n-2 (inc counter) n)))
+
+(define (f-iter n)
+  (if (< n 3)
+      3
+      (f-iter-helper 3 3 3 1 (- n 2))))
+
+(define (f-recr n)
+  (if (< n 3)
+      3
+      (+ (f-recr (- n 1)) (* 2 (f-recr (- n 2))) (* 3 (f-recr (- n 3))))))
+
+;;; Exercise 1.12
+
+(define (binomial n k)
+  (if (or (<= k 0) (>= k n))
+      1
+      (+ (binomial (- n 1) (- k 1)) (binomial (- n 1) k))))
+
+;;; Exercise 1.13
+
+; I have found a truly wonderful proof, but the margin is too small to contain it.
